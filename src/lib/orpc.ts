@@ -15,7 +15,7 @@ declare global {
 }
 
 const link = new RPCLink({
-  url: new URL('/rpc', typeof window !== 'undefined' ? window.location.href : 'http://localhost:3000'),
+  url: new URL('/rpc', typeof window !== 'undefined' ? window.location.href : process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000'),
   plugins: [
     new BatchLinkPlugin({
       groups: [{
@@ -26,6 +26,6 @@ const link = new RPCLink({
   ],
 })
 
-export const client: RouterClient<typeof router> = globalThis.$client ?? createORPCClient(link)
+export const client: RouterClient<typeof router> = createORPCClient(link)
 
 export const orpc = createORPCReactQueryUtils(client)

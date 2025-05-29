@@ -1,23 +1,21 @@
-'use client'
+'use client';
 
-import { orpc } from '@/lib/orpc'
-import { useSuspenseInfiniteQuery } from '@tanstack/react-query'
+import { orpc } from '@/lib/orpc';
+import { useSuspenseInfiniteQuery } from '@tanstack/react-query';
 
-export function ListPlanetsQuery() {
-  const { data, refetch, fetchNextPage, hasNextPage, status } = useSuspenseInfiniteQuery(
-    orpc.planet.list.infiniteOptions({
-      input: cursor => ({ cursor, limit: 10 }),
-      getNextPageParam: lastPage => lastPage.length === 10 ? lastPage.at(-1)?.id : null,
-      initialPageParam: 0,
-    }),
-  )
+export function ListPlanetsQuery(props: { limit: number }) {
+  const { data, refetch, fetchNextPage, hasNextPage, status } =
+    useSuspenseInfiniteQuery(
+      orpc.planet.list.infiniteOptions({
+        input: (cursor) => ({ cursor, limit: props.limit }),
+        getNextPageParam: (lastPage) =>
+          lastPage.length === 10 ? lastPage.at(-1)?.id : null,
+        initialPageParam: 0,
+      })
+    );
 
   if (status === 'error') {
-    return (
-      <p>
-        Something went wrong.
-      </p>
-    )
+    return <p>Something went wrong.</p>;
   }
 
   return (
@@ -35,14 +33,14 @@ export function ListPlanetsQuery() {
         </thead>
         <tbody>
           {data.pages.flatMap((page, i) =>
-            page.map(planet => (
+            page.map((planet) => (
               <tr key={`${planet.id}-${i}`}>
                 <td>{planet.id}</td>
                 <td>{planet.name}</td>
                 <td>{planet.description}</td>
                 <td>{planet.imageUrl}</td>
               </tr>
-            )),
+            ))
           )}
         </tbody>
 
@@ -65,6 +63,5 @@ export function ListPlanetsQuery() {
         </tfoot>
       </table>
     </div>
-
-  )
+  );
 }
