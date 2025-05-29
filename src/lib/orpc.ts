@@ -3,7 +3,7 @@ import type { RouterClient } from '@orpc/server'
 import { createORPCClient } from '@orpc/client'
 import { RPCLink } from '@orpc/client/fetch'
 import { createORPCReactQueryUtils } from '@orpc/react-query'
-import { BatchLinkPlugin } from './orpc.batch'
+import { BatchLinkPlugin } from '@orpc/client/plugins'
 
 /**
  * This is part of the Optimize SSR setup.
