@@ -24,6 +24,7 @@ const link = new RPCLink({
       }],
     }),
   ],
+  method: 'GET'
 })
 
 export const client: RouterClient<typeof router> = createORPCClient(link)
