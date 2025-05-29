@@ -3,6 +3,8 @@ import { CreatePlanetMutationForm } from './orpc-mutation';
 import { ListPlanetsQuery } from './orpc-query';
 import { OrpcServerAction } from './orpc-server-action';
 
+export const dynamic = 'force-dynamic';
+
 export default function Home() {
   return (
     <div>
