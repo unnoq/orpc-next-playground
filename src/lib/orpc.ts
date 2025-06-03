@@ -18,6 +18,7 @@ const link = new RPCLink({
   url: new URL('/rpc', typeof window !== 'undefined' ? window.location.href : process.env.VERCEL_URL ? `https://orpc-next-playground.vercel.app` : 'http://localhost:3000'),
   plugins: [
     new BatchLinkPlugin({
+      mode: 'buffered',
       groups: [{
         condition: () => true,
         context: {},
