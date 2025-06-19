@@ -1,3 +1,4 @@
+import Link from 'next/dist/client/link';
 import { redirectToScalarForm } from './actions';
 import { CreatePlanetMutationForm } from './orpc-mutation';
 import { ListPlanetsQuery } from './orpc-query';
@@ -14,6 +15,9 @@ export default function Home() {
         <button type="submit">Redirect to Scalar API Reference</button>
       </form>{' '}
       page.
+      <Link href="/dashboard">
+        <button>Go to Dashboard</button>
+      </Link>
       <hr />
       <OrpcServerAction />
       <hr />
