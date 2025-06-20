@@ -1,10 +1,8 @@
+"server only";
+
 import { router } from '@/router'
 import { createRouterClient } from '@orpc/server'
 import { headers } from 'next/headers'
-
-if (typeof window !== 'undefined') {
-  throw new Error('This file should only be imported on the server side.')
-}
 
 /**
  * This is part of the Optimize SSR setup.
