@@ -1,5 +1,3 @@
-import '../lib/orpc.server';
-
 import type { Metadata } from 'next';
 import { Providers } from './providers';
 
